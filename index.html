@@ -30,8 +30,12 @@
             }
             document.getElementById("output").value = output_text;
             document.getElementById("check_text").innerHTML = check_text;
+        }
+        function convert_copy() {
+            convert();
             document.getElementById("output").select();
-            document.execCommand('copy')
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
         }
     </script>
     <h1>康煕部首→CJK漢字コンバータ</h1>
@@ -44,7 +48,8 @@
 </textarea>
     </div>
     <div>
-        <button type="button" onclick="convert()">Convert</button>
+        <button type="button" onclick="convert()">Convert Only</button>
+        <button type="button" onclick="convert_copy()">Convert & Copy</button>
     </div>
     <div>
         変換結果
