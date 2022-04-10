@@ -1,10 +1,27 @@
 <html>
 
 <body>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <style>
         span.found {
             color: red;
             font-weight: bold;
+        }
+
+        .btn-square {
+            display: inline-block;
+            padding: 0.5em 0.5em;
+            text-decoration: none;
+            background: #668ad8;
+            color: #FFF;
+            border-bottom: solid 4px #626295;
+            border-radius: 5px;
+        }
+
+        .btn-square:active {
+            -webkit-transform: translateY(4px);
+            transform: translateY(4px);
+            border-bottom: none;
         }
     </style>
     <script src="./radix_table.js">
@@ -59,6 +76,12 @@
     </div>
     <div id="check_text">
     </div>
+    <a href="https://github.com/kaityo256/radical_cjk_convert">
+        <div class="btn-square">
+            <i class="fab fa-github"></i> View on GitHub
+        </div>
+        <p>
+    </a>
 </body>
 
 </html>
