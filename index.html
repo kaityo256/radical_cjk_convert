@@ -1,0 +1,59 @@
+<html>
+
+<body>
+    <style>
+        span.found {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script src="./radix_table.js">
+
+    </script>
+
+    <script>
+        function convert() {
+            let check_text = ""
+            let output_text = ""
+            let input_text = document.getElementById("input").value
+            for (let i = 0; i < input_text.length; i++) {
+                let code = input_text.codePointAt(i).toString(16)
+                if (code in radix_table) {
+                    const cjk_code = parseInt(radix_table[code])
+                    console.log(String.fromCharCode(cjk_code))
+                    output_text = output_text + String.fromCharCode(cjk_code)
+                    check_text = check_text + "<span class=found>" + input_text[i] + "</span>"
+                } else {
+                    output_text = output_text + input_text[i]
+                    check_text = check_text + input_text[i]
+                }
+            }
+            document.getElementById("output").value = output_text;
+            document.getElementById("check_text").innerHTML = check_text;
+            document.getElementById("output").select();
+            document.execCommand('copy')
+        }
+    </script>
+    <h1>康煕部首→CJK漢字コンバータ</h1>
+    <div>
+        以下に変換用文字列を入力してください。
+    </div>
+    <div>
+        <textarea id="input" rows="5" cols="100">
+このなかにまずい文字が⾒られます。
+</textarea>
+    </div>
+    <div>
+        <button type="button" onclick="convert()">Convert</button>
+    </div>
+    <div>
+        変換結果
+    </div>
+    <div>
+        <textarea id="output" rows="5" cols="100"></textarea>
+    </div>
+    <div id="check_text">
+    </div>
+</body>
+
+</html>
