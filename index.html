@@ -32,19 +32,26 @@
 
     <script>
         function convert() {
-            let check_text = ""
-            let output_text = ""
-            let input_text = document.getElementById("input").value
+            let check_text = "";
+            let output_text = "";
+            let input_text = document.getElementById("input").value;
+            if (document.getElementById('remove_space').checked) {
+                input_text = input_text.replace(/ /g, "");
+            }
+            if (document.getElementById('remove_newline').checked) {
+                input_text = input_text.replace(/\n/g, "");
+                input_text = input_text.replace(/\r/g, "");
+            }
             for (let i = 0; i < input_text.length; i++) {
-                let code = input_text.codePointAt(i).toString(16)
+                let code = input_text.codePointAt(i).toString(16);
                 if (code in radix_table) {
-                    const cjk_code = parseInt(radix_table[code])
-                    console.log(String.fromCharCode(cjk_code))
-                    output_text = output_text + String.fromCharCode(cjk_code)
-                    check_text = check_text + "<span class=found>" + input_text[i] + "</span>"
+                    const cjk_code = parseInt(radix_table[code]);
+                    console.log(String.fromCharCode(cjk_code));
+                    output_text = output_text + String.fromCharCode(cjk_code);
+                    check_text = check_text + "<span class=found>" + input_text[i] + "</span>";
                 } else {
-                    output_text = output_text + input_text[i]
-                    check_text = check_text + input_text[i]
+                    output_text = output_text + input_text[i];
+                    check_text = check_text + input_text[i];
                 }
             }
             document.getElementById("output").value = output_text;
@@ -65,6 +72,10 @@
             <li>「Convert Only」変換のみ。</li>
             <li>「Convert & Copy」変換後のテキストをクリップボードにコピー。</li>
         </ul>
+    </div>
+    <div>
+        <input type="checkbox" id="remove_space"><label for="remove_space">空白を削除</label>
+        <input type="checkbox" id="remove_newline"><label for="remove_newline">改行を削除</label>
     </div>
     <div>
         <textarea id="input" rows="5" cols="100">
